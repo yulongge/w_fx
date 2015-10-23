@@ -1,0 +1,263 @@
+@charset "UTF-8";
+/* reset */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  vertical-align: baseline;
+  font-style: inherit;
+  font-size: 100%; }
+
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; }
+
+body {
+  line-height: 1; }
+
+li {
+  list-style: none; }
+
+a:active {
+  outline: 0; }
+
+button[disabled], html input[disabled] {
+  cursor: default; }
+
+img {
+  vertical-align: middle; }
+
+button, input, select, textarea {
+  margin: 0;
+  font-size: 100%;
+  font-family: inherit; }
+
+button, input {
+  line-height: normal; }
+
+button, select {
+  text-transform: none; }
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button; }
+
+input[type="search"] {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-appearance: textfield; }
+
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+[hidden], template {
+  display: none; }
+
+dfn {
+  font-style: italic; }
+
+code, kbd, pre, samp {
+  font-size: 1em;
+  font-family: monospace, serif; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse; }
+
+@font-face {
+  font-family: 'digital';
+  src: url("../iconfont/fonts/ds-webfont.woff2") format("woff2"), url("../iconfont/fonts/ds-webfont.woff") format("woff"), url("../iconfont/fonts/ds-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+html {
+  font-size: 10px; }
+
+body {
+  font-size: 12px; }
+
+.con {
+  width: 94%;
+  height: auto;
+  margin: 0 auto; }
+
+.banner {
+  width: 100%;
+  height: 58px; }
+  .banner .con {
+    height: 100%;
+    border-bottom: 1px solid #d8d8d8;
+    margin: 0 auto; }
+    .banner .con .icon {
+      width: 30px;
+      height: 30px; }
+      .banner .con .icon img {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%; }
+    .banner .con .msg {
+      margin-left: 8px; }
+      .banner .con .msg i {
+        display: block;
+        font-size: 1.2rem; }
+      .banner .con .msg .name {
+        color: #333333;
+        line-height: 1.2; }
+      .banner .con .msg .ins {
+        color: #999999;
+        font-size: 1rem;
+        line-height: 1.5; }
+  .banner span {
+    display: block;
+    float: left;
+    height: 30px;
+    position: relative;
+    top: 50%;
+    margin-top: -15px; }
+
+.title {
+  width: 100%;
+  height: auto; }
+  .title .con {
+    color: #333333;
+    font-size: 2rem;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: "华文黑体";
+    line-height: 1.25; }
+
+.content {
+  width: 100%;
+  height: auto;
+  margin-bottom: 44px; }
+  .content .con {
+    margin: 0 auto; }
+    .content .con .article {
+      margin-bottom: 25px; }
+      .content .con .article p {
+        font-size: 1.4rem;
+        line-height: 1.8;
+        color: #666666; }
+    .content .con .vArticle p {
+      font-size: 1.7rem; }
+    .content .con .card {
+      margin-bottom: 25px;
+      width: 100%;
+      background: #4bbb00;
+      position: relative; }
+      .content .con .card a {
+        text-decoration: none; }
+      .content .con .card img {
+        width: 100%; }
+      .content .con .card .cMsg {
+        position: absolute;
+        bottom: 14px;
+        margin-left: 10px;
+        width: 100%;
+        display: block; }
+        .content .con .card .cMsg i {
+          display: block;
+          color: #ffffff; }
+        .content .con .card .cMsg .cName {
+          font-size: 1.5rem;
+          line-height: 2.8rem; }
+        .content .con .card .cMsg .cIns {
+          font-size: 1rem;
+          line-height: 1.5rem; }
+        .content .con .card .cMsg .arrow {
+          position: absolute;
+          right: 20px;
+          background: url("../images/arrow.png");
+          width: 12px;
+          height: 20px;
+          background-size: cover;
+          display: inline-block;
+          top: 50%;
+          margin-top: -10px; }
+    .content .con .img {
+      margin-bottom: 25px;
+      width: 100%; }
+      .content .con .img img {
+        width: 100%; }
+
+.footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 44px;
+  border-top: 1px solid #e8e8e8;
+  background: #ffffff;
+  opacity: 0.9; }
+  .footer .con {
+    position: relative;
+    height: 100%; }
+    .footer .con i {
+      display: inline-block;
+      position: absolute; }
+    .footer .con .share {
+      width: 17px;
+      height: 21px;
+      left: 25px;
+      background: url("../images/share.png");
+      top: 50%;
+      margin-top: -10px;
+      background-size: cover; }
+    .footer .con .support {
+      width: 23px;
+      height: 20px;
+      right: 25px;
+      background: url("../images/support.png");
+      top: 50%;
+      margin-top: -9px;
+      background-size: cover; }
+    .footer .con .supported {
+      background: url("../images/supported.png");
+      background-size: cover; }
+    .footer .con .num {
+      width: 20px;
+      height: 20px;
+      right: 0px;
+      top: 50%;
+      margin-top: 0px;
+      font-size: 1em;
+      color: #6f6f6f; }
+    .footer .con .comment {
+      width: 21px;
+      height: 21px;
+      left: 25px;
+      background: url("../images/comment.png");
+      top: 50%;
+      margin-top: -10px;
+      background-size: cover; }
+
+.vTitle .con {
+  font-size: 2.5rem;
+  line-height: 1.44; }
+
+.content .ifcon {
+  width: 100%;
+  margin-bottom: 30px;
+  background: #000;
+  text-align: center; }
+  .content .ifcon iframe {
+    width: auto;
+    height: 211px; }
+
+/*# sourceMappingURL=style.css.map */
