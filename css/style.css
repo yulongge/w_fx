@@ -157,45 +157,92 @@ body {
         color: #666666; }
     .content .con .vArticle p {
       font-size: 1.7rem; }
-    .content .con .card {
-      margin-bottom: 25px;
-      width: 100%;
-      background: #4bbb00;
-      position: relative; }
-      .content .con .card a {
-        text-decoration: none; }
-      .content .con .card img {
-        width: 100%; }
-      .content .con .card .cMsg {
-        position: absolute;
-        bottom: 14px;
-        margin-left: 10px;
-        width: 100%;
-        display: block; }
-        .content .con .card .cMsg i {
-          display: block;
-          color: #ffffff; }
-        .content .con .card .cMsg .cName {
-          font-size: 1.5rem;
-          line-height: 2.8rem; }
-        .content .con .card .cMsg .cIns {
-          font-size: 1rem;
-          line-height: 1.5rem; }
-        .content .con .card .cMsg .arrow {
-          position: absolute;
-          right: 20px;
-          background: url("../images/arrow.png");
-          width: 12px;
-          height: 20px;
-          background-size: cover;
-          display: inline-block;
-          top: 50%;
-          margin-top: -10px; }
     .content .con .img {
       margin-bottom: 25px;
       width: 100%; }
       .content .con .img img {
         width: 100%; }
+    .content .con .audio {
+      margin-top: 26px;
+      position: relative; }
+      .content .con .audio .playerCon {
+        position: relative; }
+        .content .con .audio .playerCon #audioTag {
+          display: none; }
+      .content .con .audio .player {
+        width: 186px;
+        height: 186px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        margin: 0 auto;
+        background: url(../images/player.png);
+        background-size: cover;
+        -webkit-animation-name: rotate;
+        -webkit-animation-duration: 40s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-tiing-function: linear; }
+      .content .con .audio .control {
+        width: 42px;
+        height: 42px;
+        background: url(../images/start.png);
+        background-size: cover;
+        margin: 0 auto;
+        left: 50%;
+        top: 50%;
+        margin-left: -21px;
+        margin-top: -21px;
+        position: absolute; }
+      .content .con .audio .pause {
+        background: url(../images/pause.png);
+        background-size: cover; }
+      .content .con .audio .msg {
+        margin-top: 26px;
+        width: 100%;
+        text-align: center;
+        position: relative; }
+        .content .con .audio .msg span {
+          display: block;
+          color: #999999;
+          line-height: 1.5; }
+        .content .con .audio .msg .name {
+          font-size: 1.9rem; }
+        .content .con .audio .msg .ins {
+          font-size: 1.1rem; }
+  .content .card {
+    margin-bottom: 25px;
+    width: 100%;
+    background: #4bbb00;
+    position: relative; }
+    .content .card a {
+      text-decoration: none; }
+    .content .card img {
+      width: 100%; }
+    .content .card .cMsg {
+      position: absolute;
+      bottom: 14px;
+      padding-left: 10px;
+      right: 0px;
+      left: 0px; }
+      .content .card .cMsg i {
+        display: block;
+        color: #ffffff; }
+      .content .card .cMsg .cName {
+        font-size: 1.5rem;
+        line-height: 2.8rem; }
+      .content .card .cMsg .cIns {
+        font-size: 1rem;
+        line-height: 1.5rem; }
+      .content .card .cMsg .arrow {
+        position: absolute;
+        right: 10px;
+        background: url("../images/arrow.png");
+        width: 12px;
+        height: 20px;
+        background-size: cover;
+        display: inline-block;
+        top: 50%;
+        margin-top: -10px; }
 
 .footer {
   position: fixed;
@@ -259,5 +306,272 @@ body {
   .content .ifcon iframe {
     width: auto;
     height: 211px; }
+
+.shade {
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  position: fixed;
+  background: #000;
+  opacity: 0.7;
+  display: none;
+  z-index: 100; }
+  .shade img {
+    width: 125px;
+    height: 200px;
+    position: fixed;
+    top: 0px;
+    right: 25px; }
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg); } }
+.running {
+  -webkit-animation-play-state: running; }
+
+.paused {
+  -webkit-animation-play-state: paused; }
+
+.goBack {
+  width: 100%;
+  margin-bottom: 60px; }
+  .goBack .line {
+    width: 217px;
+    height: 5.5px;
+    margin: 0 auto;
+    background: url("../images/line.jpg");
+    background-size: contain; }
+  .goBack .back {
+    width: 106.5px;
+    height: 26px;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: 1px solid #2acc6e;
+    font-size: 1.2rem;
+    color: #2acc6e;
+    margin-top: 27px;
+    line-height: 26px;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    position: relative; }
+    .goBack .back span {
+      display: inline-block; }
+    .goBack .back i {
+      display: inline-block;
+      width: 5px;
+      height: 10px;
+      background: url("../images/back.png");
+      background-size: contain;
+      position: relative;
+      top: 1px; }
+
+.fxCon {
+  width: 100%; }
+  .fxCon .swiper-container {
+    width: 100%;
+    height: 135px; }
+    .fxCon .swiper-container .swiper-pagination-bullet {
+      opacity: 0.3;
+      background: #fff; }
+    .fxCon .swiper-container .swiper-pagination-bullet-active {
+      opacity: 0.8;
+      background: #fff; }
+  .fxCon .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center; }
+    .fxCon .swiper-slide img {
+      position: relative;
+      width: 100%;
+      height: 100%; }
+  .fxCon .entrance {
+    width: 100%;
+    height: 70px;
+    display: -webkit-box;
+    display: -ms-box;
+    display: -moz-box;
+    display: box;
+    font-size: 1.2rem;
+    color: #666;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0; }
+    .fxCon .entrance .item {
+      position: relative;
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      -ms-box-flex: 1;
+      box-flex: 1;
+      padding: 15px; }
+      .fxCon .entrance .item span {
+        display: block;
+        text-align: center;
+        height: 22px; }
+      .fxCon .entrance .item .msg {
+        line-height: 2; }
+    .fxCon .entrance .item1 img {
+      width: 20.5px;
+      height: 16.5px; }
+    .fxCon .entrance .item2 img {
+      width: 15px;
+      height: 22px; }
+    .fxCon .entrance .item3 img {
+      width: 20px;
+      height: 19px; }
+  .fxCon .hotsList {
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 0;
+    padding-top: 10px;
+    padding-bottom: 10px; }
+    .fxCon .hotsList .item {
+      position: relative;
+      text-align: center;
+      display: inline-block;
+      width: 33.333%;
+      font-size: 0; }
+      .fxCon .hotsList .item .itemCon {
+        width: 90%;
+        position: relative;
+        margin: 0 auto; }
+      .fxCon .hotsList .item img {
+        display: block;
+        margin: auto;
+        width: 100%; }
+      .fxCon .hotsList .item .msg {
+        display: block;
+        position: absolute;
+        width: 100%;
+        background: #000;
+        opacity: 0.4;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        border-radius: 5px;
+        font-size: 1.4rem;
+        color: #fff; }
+        .fxCon .hotsList .item .msg a {
+          display: table;
+          margin: auto;
+          width: 100%;
+          height: 100%;
+          text-decoration: none; }
+          .fxCon .hotsList .item .msg a span {
+            display: table-cell;
+            vertical-align: middle; }
+        .fxCon .hotsList .item .msg i {
+          display: block;
+          width: 100%;
+          line-height: 20px;
+          font-size: 1.4rem;
+          color: #fff; }
+        .fxCon .hotsList .item .msg .price {
+          font-size: 1.2rem; }
+  .fxCon .cmsList {
+    width: 90%;
+    margin: auto; }
+    .fxCon .cmsList .title {
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin-top: 15px;
+      width: 100%; }
+    .fxCon .cmsList .listCon {
+      width: 100%; }
+      .fxCon .cmsList .listCon .item {
+        width: 100%;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e0e0e0;
+        height: 100%;
+        overflow: hidden;
+        display: table;
+        box-sizing: border-box; }
+        .fxCon .cmsList .listCon .item .img {
+          width: 95px;
+          max-width: 95px;
+          display: table-cell;
+          vertical-align: middle;
+          position: relative; }
+          .fxCon .cmsList .listCon .item .img * {
+            vertical-align: middle; }
+          .fxCon .cmsList .listCon .item .img img {
+            width: 100%; }
+          .fxCon .cmsList .listCon .item .img .movieIcon {
+            display: block;
+            width: 24px;
+            height: 24px;
+            margin: auto;
+            background: url("../images/index/movieIcon.png");
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            background-size: cover;
+            margin-left: -12px;
+            margin-top: -12px; }
+        .fxCon .cmsList .listCon .item .msg {
+          max-width: 240px;
+          display: table-cell;
+          vertical-align: middle; }
+          .fxCon .cmsList .listCon .item .msg * {
+            vertical-align: middle; }
+          .fxCon .cmsList .listCon .item .msg .tm {
+            font-size: 1.5rem;
+            margin-left: 15px;
+            color: #333;
+            line-height: 1.4; }
+          .fxCon .cmsList .listCon .item .msg .bm {
+            margin-left: 15px;
+            font-size: 1.1rem;
+            color: #999;
+            line-height: 1.5;
+            position: relative; }
+            .fxCon .cmsList .listCon .item .msg .bm .date {
+              margin-left: 14px; }
+            .fxCon .cmsList .listCon .item .msg .bm .tip {
+              color: #fc5e5d;
+              font-size: 0.9rem;
+              margin-left: 4px; }
+            .fxCon .cmsList .listCon .item .msg .bm .favor {
+              position: absolute;
+              right: 0px; }
+              .fxCon .cmsList .listCon .item .msg .bm .favor .icon {
+                background: url("../images/index/nofavor.png") no-repeat;
+                width: 12px;
+                height: 10px;
+                background-size: contain;
+                display: inline-block; }
+              .fxCon .cmsList .listCon .item .msg .bm .favor .selected {
+                background: url("../images/index/favor.png") no-repeat;
+                background-size: contain; }
+              .fxCon .cmsList .listCon .item .msg .bm .favor .num {
+                font-size: 1rem; }
+  .fxCon .loadMore {
+    width: 100%;
+    height: 42px;
+    text-align: center; }
+    .fxCon .loadMore span {
+      display: block;
+      font-size: 1.3rem;
+      color: #666;
+      line-height: 42px; }
 
 /*# sourceMappingURL=style.css.map */

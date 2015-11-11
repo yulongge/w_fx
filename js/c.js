@@ -1,0 +1,11 @@
+$(function(){
+  CW.init();
+  $(".share").click(function(){//分享
+      $(".shade").show().unbind("click").click(function(){
+        $(this).hide();
+      });
+  });
+  $(".support").click(function(){//点赞和取消点赞
+     CW.favoriteEvent();
+  });
+});
