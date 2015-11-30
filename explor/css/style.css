@@ -1,0 +1,328 @@
+/* reset */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  vertical-align: baseline;
+  font-style: inherit;
+  font-size: 100%; }
+
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; }
+
+body {
+  line-height: 1; }
+
+li {
+  list-style: none; }
+
+a:active {
+  outline: 0; }
+
+button[disabled], html input[disabled] {
+  cursor: default; }
+
+img {
+  vertical-align: middle; }
+
+button, input, select, textarea {
+  margin: 0;
+  font-size: 100%;
+  font-family: inherit; }
+
+button, input {
+  line-height: normal; }
+
+button, select {
+  text-transform: none; }
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button; }
+
+input[type="search"] {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-appearance: textfield; }
+
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+[hidden], template {
+  display: none; }
+
+dfn {
+  font-style: italic; }
+
+code, kbd, pre, samp {
+  font-size: 1em;
+  font-family: monospace, serif; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse; }
+
+@font-face {
+  font-family: 'digital';
+  src: url("../iconfont/fonts/ds-webfont.woff2") format("woff2"), url("../iconfont/fonts/ds-webfont.woff") format("woff"), url("../iconfont/fonts/ds-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+html {
+  font-size: 10px; }
+
+body {
+  font-size: 12px; }
+
+.fxCon {
+  width: 100%; }
+  .fxCon .swiper-container {
+    width: 100%;
+    height: 135px; }
+    .fxCon .swiper-container .swiper-pagination-bullet {
+      opacity: 0.3;
+      background: #fff; }
+    .fxCon .swiper-container .swiper-pagination-bullet-active {
+      opacity: 0.8;
+      background: #fff; }
+  .fxCon .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center; }
+    .fxCon .swiper-slide a {
+      display: block;
+      width: 100%;
+      height: 100%; }
+    .fxCon .swiper-slide img {
+      position: relative;
+      width: 100%;
+      height: 100%; }
+  .fxCon .entrance {
+    width: 100%;
+    height: 70px;
+    display: -webkit-box;
+    display: -ms-box;
+    display: -moz-box;
+    display: box;
+    font-size: 1.2rem;
+    color: #666;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0; }
+    .fxCon .entrance .item {
+      position: relative;
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      -ms-box-flex: 1;
+      box-flex: 1;
+      padding: 15px; }
+      .fxCon .entrance .item span {
+        display: block;
+        text-align: center;
+        height: 22px; }
+      .fxCon .entrance .item .msg {
+        line-height: 2; }
+    .fxCon .entrance .item1 img {
+      width: 20.5px;
+      height: 16.5px; }
+    .fxCon .entrance .item2 img {
+      width: 15px;
+      height: 22px; }
+    .fxCon .entrance .item3 img {
+      width: 20px;
+      height: 19px; }
+  .fxCon .hotsList {
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 0;
+    padding-top: 10px;
+    padding-bottom: 10px; }
+    .fxCon .hotsList .item {
+      position: relative;
+      text-align: center;
+      display: inline-block;
+      width: 33.333%;
+      font-size: 0;
+      max-height: 68px; }
+      .fxCon .hotsList .item .itemCon {
+        width: 90%;
+        position: relative;
+        margin: 0 auto;
+        max-height: 68px; }
+      .fxCon .hotsList .item img {
+        display: block;
+        margin: auto;
+        width: 100%;
+        max-height: 68px; }
+      .fxCon .hotsList .item .msg {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        border-radius: 5px;
+        font-size: 1.4rem;
+        color: #fff;
+        z-index: 20; }
+        .fxCon .hotsList .item .msg a {
+          display: table;
+          margin: auto;
+          width: 100%;
+          height: 100%;
+          text-decoration: none; }
+          .fxCon .hotsList .item .msg a span {
+            display: table-cell;
+            vertical-align: middle; }
+        .fxCon .hotsList .item .msg i {
+          display: block;
+          width: 100%;
+          line-height: 20px;
+          font-size: 1.4rem;
+          color: #fff; }
+        .fxCon .hotsList .item .msg .price {
+          font-size: 1.2rem; }
+      .fxCon .hotsList .item .shade {
+        background: #000;
+        opacity: 0.4;
+        z-index: 10; }
+  .fxCon .cmsList {
+    width: 90%;
+    margin: auto; }
+    .fxCon .cmsList .title {
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin-top: 15px;
+      width: 100%; }
+    .fxCon .cmsList .listCon {
+      width: 100%; }
+      .fxCon .cmsList .listCon .item {
+        width: 100%;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e0e0e0;
+        height: 100%;
+        overflow: hidden;
+        display: table;
+        box-sizing: border-box; }
+        .fxCon .cmsList .listCon .item a {
+          text-decoration: none;
+          display: table-row;
+          width: 100%; }
+        .fxCon .cmsList .listCon .item .img {
+          width: 95px;
+          max-width: 95px;
+          display: table-cell;
+          vertical-align: middle;
+          position: relative; }
+          .fxCon .cmsList .listCon .item .img * {
+            vertical-align: middle; }
+          .fxCon .cmsList .listCon .item .img img {
+            width: 100%; }
+          .fxCon .cmsList .listCon .item .img .movieIcon {
+            display: block;
+            width: 24px;
+            height: 24px;
+            margin: auto;
+            background: url("../images/index/movieIcon.png");
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            background-size: cover;
+            margin-left: -12px;
+            margin-top: -12px; }
+        .fxCon .cmsList .listCon .item .msg {
+          display: table-cell;
+          vertical-align: middle; }
+          .fxCon .cmsList .listCon .item .msg * {
+            vertical-align: middle; }
+          .fxCon .cmsList .listCon .item .msg .tm {
+            font-size: 1.5rem;
+            margin-left: 15px;
+            color: #333;
+            line-height: 1.4; }
+            .fxCon .cmsList .listCon .item .msg .tm .tip {
+              color: #fc5e5d;
+              font-size: 0.9rem;
+              margin-left: 4px;
+              position: relative;
+              top: -5px; }
+          .fxCon .cmsList .listCon .item .msg .bm {
+            margin-left: 15px;
+            font-size: 1.1rem;
+            color: #999;
+            line-height: 1.5;
+            position: relative; }
+            .fxCon .cmsList .listCon .item .msg .bm .date {
+              margin-left: 14px; }
+            .fxCon .cmsList .listCon .item .msg .bm .tip {
+              color: #fc5e5d;
+              font-size: 0.9rem;
+              margin-left: 4px; }
+            .fxCon .cmsList .listCon .item .msg .bm .favor {
+              position: absolute;
+              right: 0px; }
+              .fxCon .cmsList .listCon .item .msg .bm .favor .rIcon {
+                background: url("../images/index/readCon.png") no-repeat;
+                width: 16px;
+                height: 10px;
+                background-size: contain;
+                display: inline-block; }
+              .fxCon .cmsList .listCon .item .msg .bm .favor .rNum {
+                font-size: 1rem;
+                display: inline-block;
+                margin-right: 10px;
+                margin-top: 3px; }
+              .fxCon .cmsList .listCon .item .msg .bm .favor .icon {
+                background: url("../images/index/nofavor.png") no-repeat;
+                width: 12px;
+                height: 10px;
+                background-size: contain;
+                display: inline-block; }
+              .fxCon .cmsList .listCon .item .msg .bm .favor .selected {
+                background: url("../images/index/favor.png") no-repeat;
+                background-size: contain; }
+              .fxCon .cmsList .listCon .item .msg .bm .favor .num {
+                font-size: 1rem;
+                display: inline-block;
+                margin-top: 3px; }
+  .fxCon .loadMore {
+    width: 100%;
+    height: 42px;
+    text-align: center; }
+    .fxCon .loadMore span {
+      display: block;
+      font-size: 1.3rem;
+      color: #666;
+      line-height: 42px; }
+
+/*# sourceMappingURL=style.css.map */
