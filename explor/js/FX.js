@@ -29,7 +29,7 @@ var FX = {
           str += "    <\/div>";
           str += "    <div class=\"msg\">";
           str += "      <div class=\"tm\">";
-          str += list[i].summary;
+          str += list[i].title;
           if(isNew){
             str += "        <span class=\"tip\">new<\/span>";
           }
