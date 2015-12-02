@@ -15,49 +15,72 @@ var FX = {
   getPage:function(data,start,num){
     var list = data;
     var _this = this;
-    for(var i=_this.startNum;i<(_this.startNum+_this.num);i++){
-      var isNew = false;
-      var date = new Date(list[i].updateTime*1000);
-      var today = new Date().getTime();
-      if((today-date)<86400000){
-        isNew = true;
-      }
-      var str =  "<div class=\"item\">";
-          str += "  <a href=\""+list[i].url+"?activeId=\""+list[i].activeId+"\"\">";
-          str += "    <div class=\"img\">";
-          str += "      <img src=\""+list[i].cover+"\" />";
-          str += "    <\/div>";
-          str += "    <div class=\"msg\">";
-          str += "      <div class=\"tm\">";
-          str += list[i].title;
-          if(isNew){
-            str += "        <span class=\"tip\">new<\/span>";
+    if(this.startNum>list.length){
+      $(".loadMore").addClass("loadEnd").unbind("click").html("");
+    }else{
+       var listLength = (_this.startNum+_this.num);
+       if(listLength>=list.length){
+          listLength = list.length;
+       }
+       for(var i=_this.startNum;i<listLength;i++){
+          var isNew = false;
+          var date = new Date(list[i].onlineTime*1000);
+          var today = new Date().getTime();
+          if((today-date)<86400000){
+            isNew = true;
           }
-          str += "      <\/div> ";
-          str += "      <div class=\"bm\">";
-          str += "        <span class=\"tit\">"+list[i].tag+"<\/span>";
-          //str += "        <span class=\"date\">"+(date.getMonth()+1)+"-"+date.getDate()+"<\/span>";
-          // if(isNew){
-          //   str += "        <span class=\"tip\">new<\/span>";
-          // }
-          str += "        <span class=\"favor\">";
-          str += "            <i class=\"rIcon\"></i>";
-          str += "            <i class=\"rNum\">"+list[i].readNum+"</i>";
-          if(list[i].like==1){
-            str += "          <i class=\"icon selected\"><\/i>";
-          }else{
-            str += "          <i class=\"icon\"><\/i>";
-          }
-          
-          str += "          <i class=\"num\">"+list[i].likeNum+"<\/i>";
-          str += "        <\/span>";
-          str += "      <\/div>";
-          str += "    <\/div>";
-          str += "   <\/a>";
-          str += "<\/div>";
-      $(".cmsList .listCon").append(str);
+          var str =  "";
+            if(i==0){
+              str += "<div class=\"item firstItem\">";
+            }else{
+              str += "<div class=\"item\">";
+            }
+              
+              str += "  <a href=\""+list[i].url+"?activeId=\""+list[i].activeId+"\"\">";
+              str += "    <div class=\"img\">";
+              str += "      <img src=\""+list[i].cover+"\" />";
+              if(list[i].type==2){
+                str += "      <i class=\"movieIcon\"></i>";
+              }
+              str += "    <\/div>";
+              str += "    <div class=\"msg\">";
+              str += "      <div class=\"tm\">";
+              str += list[i].title;
+              if(isNew){
+                str += "        <span class=\"tip\">new<\/span>";
+              }
+              str += "      <\/div> ";
+              str += "      <div class=\"bm\">";
+              str += "        <span class=\"tit\">"+list[i].tag+"<\/span>";
+              //str += "        <span class=\"date\">"+(date.getMonth()+1)+"-"+date.getDate()+"<\/span>";
+              // if(isNew){
+              //   str += "        <span class=\"tip\">new<\/span>";
+              // }
+              str += "        <span class=\"favor\">";
+              str += "            <i class=\"rIcon\"></i>";
+              str += "            <i class=\"rNum\">"+list[i].readNum+"</i>";
+              if(list[i].like==1){
+                str += "          <i class=\"icon selected\"><\/i>";
+              }else{
+                str += "          <i class=\"icon\"><\/i>";
+              }
+              
+              str += "          <i class=\"num\">"+list[i].likeNum+"<\/i>";
+              str += "        <\/span>";
+              str += "      <\/div>";
+              str += "    <\/div>";
+              str += "   <\/a>";
+              str += "<\/div>";
+          $(".cmsList .listCon").append(str);
+        }
+        this.startNum = this.startNum+this.num;
+        if(this.startNum>list.length){
+          $(".loadMore").addClass("loadEnd").unbind("click").html("");
+        }
     }
-    this.startNum = this.startNum+this.num;
+   
+    
+    
   },
   getCMList:function(){//内容列表
         var url = "http://promotion.wepiao.com/activecms/active-list/get-active-list?channelId=3&activeId=1&city=10&jsonp=?";
@@ -114,31 +137,40 @@ var FX = {
   },
   getBannerList:function(){
     var _this = this;
-    var url = "http://test.wxadmin.wepiao.com/uploads/weixin_banner/banner.json?="+new Date().getTime();
+    var url = "http://appnfs.wepiao.com/uploads/weixin_banner/banner.json?="+new Date().getTime();
     $.ajax({
         url : url,
         type: 'GET',
         dataType: 'jsonp',
         jsonpCallback: 'callback_banner',
         success: function(data, status, xhr) {
-            var activeData = data["10"].data;
+            var activeData = [];
+            if(data["10"]!=undefined){
+              activeData = data["10"].data;
+            }
             var allData = data["0"].data;
             var data = activeData.concat(allData);
             console.log(data);
+            data.sort(function(a,b){
+              return a.iSort-b.iSort;
+            });
+            console.log("==============================");
+            console.log(data);
             for(var i=0;i<data.length;i++){
               var imgUrl = data[i].img;
-              var index = imgUrl.indexOf("com");
-              var tempUrl = imgUrl.substring(index,imgUrl.length);
-              var url = "http://test.wxadmin.wepiao."+tempUrl;
-              console.log(url);
+              // var index = imgUrl.indexOf("com");
+              // var tempUrl = imgUrl.substring(index,imgUrl.length);
+              // var url = "http://test.wxadmin.wepiao."+tempUrl;
+              // console.log(url);
               var str  = "<div class=\"swiper-slide\">";
                   str += "<a href=\""+data[i].url+"\">";
-                  str += "<img src=\""+url+"\" \/>";
+                  str += "<img src=\""+imgUrl+"\" \/>";
                   str += "<\/a>";
                   str += "<\/div>";
               $(".swiper-wrapper").append(str);
             } 
             _this.swiper();
+            $(".swiper-pagination").show();
         },
         error: function() {
             console.log('not good');
