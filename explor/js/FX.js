@@ -3,6 +3,8 @@ var FX = {
   num:5,
   startNum:0,
   data:null,
+  length:0,
+  Scroll:"",
   swiper:function(){//轮播图
       var swiper = new Swiper('.swiper-container', {
            autoplay: 2000,
@@ -18,7 +20,9 @@ var FX = {
     if(this.startNum>list.length){
       $(".loadMore").addClass("loadEnd").unbind("click").html("");
     }else{
-       var listLength = (_this.startNum+_this.num);
+
+       var listLength = (_this.startNum+num);
+
        if(listLength>=list.length){
           listLength = list.length;
        }
@@ -35,8 +39,9 @@ var FX = {
             }else{
               str += "<div class=\"item\">";
             }
-              
-              str += "  <a href=\""+list[i].url+"?activeId=\""+list[i].activeId+"\"\">";
+
+              //str += "  <a href=\""+list[i].url+"?activeId=\""+list[i].activeId+"\"\">";
+              str += "  <a href=\""+list[i].url+"\">";
               str += "    <div class=\"img\">";
               str += "      <img src=\""+list[i].cover+"\" />";
               if(list[i].type==2){
@@ -64,7 +69,7 @@ var FX = {
               }else{
                 str += "          <i class=\"icon\"><\/i>";
               }
-              
+
               str += "          <i class=\"num\">"+list[i].likeNum+"<\/i>";
               str += "        <\/span>";
               str += "      <\/div>";
@@ -73,14 +78,14 @@ var FX = {
               str += "<\/div>";
           $(".cmsList .listCon").append(str);
         }
-        this.startNum = this.startNum+this.num;
+        this.startNum = this.startNum+num;
         if(this.startNum>list.length){
           $(".loadMore").addClass("loadEnd").unbind("click").html("");
         }
     }
-   
-    
-    
+
+
+
   },
   getCMList:function(){//内容列表
         var url = "http://promotion.wepiao.com/activecms/active-list/get-active-list?channelId=3&activeId=1&city=10&jsonp=?";
@@ -90,14 +95,49 @@ var FX = {
                 var list = data.data;
                 _this.data = list;
                 _this.getPage(_this.data,_this.startNum,_this.num);
+                myScroll.refresh();
 
              }
         });
         $(".loadMore").click(function(){
-          _this.getPage(_this.data,_this.startNum,_this.num);
+          _this.getPage(_this.data,_this.startNum,_this.num+5);
+          myScroll.refresh();
+          myScroll.on('scrollEnd', function(){
+            console.log(this.y);
+            console.log(this.maxScrollY);
+            if(this.y>=(this.maxScrollY)){
+              //alert("coming...");
+              _this.getPage(_this.data,_this.startNum,_this.num+5);
+              myScroll.refresh();
+            }
+
+          });
         });
+
+  },
+  renderHead:function(data){
+    for(var i=0;i<1;i++){
+        var str  = "  <div class=\"item\">";
+            str += "    <div class=\"itemCon\">";
+            str += "        <img src=\""+data[i].sPicture+"\"/>";
+            str += "        <div class=\"msg\">";
+            str += "          <a href=\""+data[i].sLink+"\" class=\"linkTo"+(i+1)+"\">";
+            str += "            <span>";
+            str += "              <i class=\"name\">"+data[i].sSecondTitle+"<\/i>";
+            str += "              <i class=\"price\">优惠购票"+data[i].sTitle+"<\/i>";
+            str += "            <\/span>";
+            str += "          <\/a>";
+            str += "        <\/div>";
+            str += "        <div class=\"msg shade\">";
+
+            str += "        <\/div>";
+            str += "    <\/div>";
+            str += "  <\/div>";
+        $(".hotsList").append(str);
+    }
   },
   getHeadList:function(){//得到headlist
+    var _this = this;
      $.ajax({
         url : 'http://appnfs.wepiao.com/uploads/weixin_discovery_head/head.json?='+new Date().getTime(),  //线上
         type: 'GET',
@@ -105,26 +145,43 @@ var FX = {
         jsonpCallback: 'callbackhead',
         success: function(data, status, xhr) {
             var data = data[0].data;
-            for(var i=0;i<3;i++){
-                var str  = "  <div class=\"item\">";
-                    str += "    <div class=\"itemCon\">";
-                    str += "        <img src=\""+data[i].sPicture+"\"/>";
-                    str += "        <div class=\"msg\">";
-                    str += "          <a href=\""+data[i].sLink+"\" class=\"linkTo"+(i+1)+"\">";
-                    str += "            <span>";
-                    str += "              <i class=\"name\">"+data[i].sSecondTitle+"<\/i>";
-                    str += "              <i class=\"price\">优惠购票"+data[i].sTitle+"<\/i>";
-                    str += "            <\/span>";
-                    str += "          <\/a>";
-                    str += "        <\/div>";
-                    str += "        <div class=\"msg shade\">";
-                    
-                    str += "        <\/div>";
-                    str += "    <\/div>";
-                    str += "  <\/div>";
-                $(".hotsList").append(str);
+
+            var today = new Date().getTime();
+            var type1 = new Array(),type2 = new Array(),type3 = new Array();
+
+            for(var i=0;i<data.length;i++){
+              var temp = data[i];
+              var iHideAt = temp.iHideAt*1000;
+              var iShowAt = temp.iShowAt*1000;
+              if(temp.iType==1){
+                if(today>iShowAt&&today<iHideAt){
+                  type1.push(temp);
+                }else{
+                  type1.push(temp);
+                }
+              }
+              if(temp.iType==2){
+                if(today>iShowAt&&today<iHideAt){
+                  type2.push(temp);
+                }else{
+                  type2.push(temp);
+                }
+              }
+              if(temp.iType==3){
+                if(today>iShowAt&&today<iHideAt){
+                  type3.push(temp);
+                }else{
+                  type3.push(temp);
+                }
+              }
             }
-            
+            //console.log("type============");
+            //console.log(type1);
+            //console.log(type2);
+            //console.log(type3);
+            _this.renderHead(type1);
+            _this.renderHead(type2);
+            _this.renderHead(type3);
         },
         error: function() {
             console.log('not good');
@@ -138,6 +195,7 @@ var FX = {
   getBannerList:function(){
     var _this = this;
     var url = "http://appnfs.wepiao.com/uploads/weixin_banner/banner.json?="+new Date().getTime();
+    //var url = "http://wxadmin.pre.wepiao.com/uploads/weixin_banner/banner.json?="+new Date().getTime();
     $.ajax({
         url : url,
         type: 'GET',
@@ -152,24 +210,30 @@ var FX = {
             var data = activeData.concat(allData);
             console.log(data);
             data.sort(function(a,b){
-              return a.iSort-b.iSort;
+              return a.iSort<b.iSort?1:-1;
             });
             console.log("==============================");
             console.log(data);
+            var today = new Date().getTime();
             for(var i=0;i<data.length;i++){
-              var imgUrl = data[i].img;
-              // var index = imgUrl.indexOf("com");
-              // var tempUrl = imgUrl.substring(index,imgUrl.length);
-              // var url = "http://test.wxadmin.wepiao."+tempUrl;
-              // console.log(url);
-              var str  = "<div class=\"swiper-slide\">";
-                  str += "<a href=\""+data[i].url+"\">";
-                  str += "<img src=\""+imgUrl+"\" \/>";
-                  str += "<\/a>";
-                  str += "<\/div>";
-              $(".swiper-wrapper").append(str);
-            } 
-            _this.swiper();
+              var hideAt = data[i].hide_at*1000;
+              var showAt = data[i].show_at*1000;
+              //console.log("time............");
+              console.log(today+"====="+hideAt+"========"+showAt);
+              if(today>showAt&&today<hideAt){
+                var imgUrl = data[i].img;
+                var str  = "<div class=\"swiper-slide\">";
+                    str += "<a href=\""+data[i].url+"\">";
+                    str += "<img src=\""+imgUrl+"\" \/>";
+                    str += "<\/a>";
+                    str += "<\/div>";
+                $(".swiper-wrapper").append(str);
+              }
+            }
+            if($(".swiper-wrapper").find(".swiper-slide").length>1){
+              _this.swiper();
+            }
+
             $(".swiper-pagination").show();
         },
         error: function() {
@@ -246,6 +310,7 @@ var FX = {
   },
   init:function(){
     //this.swiper();
+    //this.Scroll = new IScroll('#fxCon', {preventDefault: false,probeType: 3,mouseWheel: true })
     this.getCMList();
     this.getHeadList();
     this.getBannerList();

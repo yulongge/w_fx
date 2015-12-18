@@ -11,44 +11,64 @@
     <link rel="stylesheet" href="./css/swiper.min.css">
   </head>
   <body>
-    <div class="fxCon">
-      <div class="swiper-container">
-          <div class="swiper-wrapper"></div>
-          <div class="swiper-pagination"></div>
-      </div>
-      <div class="entrance">
-        <div class="item item1">
-          <span>
-            <img src="./images/index/item1.png"/>
-          </span>
-          <span class="msg">实时票房</span>
+    <div id="fxCon" class="fxCon">
+      <div class="scroller">
+        <div class="swiper-container">
+            <div class="swiper-wrapper"></div>
+            <div class="swiper-pagination"></div>
         </div>
-        <div class="item item2">
-          <span>
-            <img src="./images/index/item2.png"/>
-          </span>
-          <span class="msg">衍生品商城</span>
+        <div class="entrance">
+          <div class="item item1">
+            <span>
+              <img src="./images/index/item1.png"/>
+            </span>
+            <span class="msg">实时票房</span>
+          </div>
+          <div class="item item2">
+            <span>
+              <img src="./images/index/item2.png"/>
+            </span>
+            <span class="msg">衍生品商城</span>
+          </div>
+          <div class="item item3">
+            <span>
+              <img src="./images/index/item3.png"/>
+            </span>
+            <span class="msg">团体采购</span>
+          </div>
         </div>
-        <div class="item item3">
-          <span>
-            <img src="./images/index/item3.png"/>
-          </span>
-          <span class="msg">团体采购</span>
+        <div class="hotsList">
+
+        </div>
+        <div class="cmsList">
+          <div class="title">推荐阅读</div>
+          <div class="listCon"></div>
+        </div>
+        <div class="loadMore">
+          <span>查看更多</span>
+        </div>
+        <div class="lb">
+
         </div>
       </div>
-      <div class="hotsList">
-      
-      </div>
-      <div class="cmsList">
-        <div class="title">推荐阅读</div>
-        <div class="listCon"></div>
-      </div>
-      <div class="loadMore">
-        <span>查看更多</span>
-      </div>
+
     </div>
   </body>
   <script src="./js/zepto.min.js"></script>
   <script src="./js/swiper.min.js"></script>
+  <script src="./js/iscroll.js"></script>
+
+
+  <script>
+    var myScroll;
+    function loaded () {
+    	myScroll = new IScroll('#fxCon', {preventDefault: false,probeType: 3,mouseWheel: true });
+    }
+    $(function(){
+      document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+      loaded();
+    });
+  </script>
   <script src="./js/FX.js"></script>
+
 </html>
