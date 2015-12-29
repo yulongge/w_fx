@@ -1,0 +1,77 @@
+html, body {
+  font-size: 10px; }
+
+.card {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
+  margin-top: 20px; }
+  .card .con {
+    width: 100%;
+    background: #333333;
+    padding: 10px;
+    box-sizing: border-box;
+    display: table; }
+    .card .con .img {
+      display: table-cell;
+      vertical-align: middle;
+      position: relative;
+      width: 50%; }
+      .card .con .img img {
+        width: 150px;
+        height: 210px; }
+    .card .con .msg {
+      display: table-cell;
+      vertical-align: middle;
+      padding: 0px 10px 0px 10px;
+      min-width: 50%; }
+      .card .con .msg span {
+        display: block;
+        color: #fff;
+        margin-bottom: 5px;
+        font-size: 1.2rem;
+        line-height: 1.2; }
+      .card .con .msg .title {
+        font-size: 1.8rem;
+        line-height: 1.3;
+        margin-bottom: 25px; }
+      .card .con .msg .price {
+        font-size: 1.1rem;
+        color: #fff; }
+        .card .con .msg .price i {
+          font-size: 1.6rem;
+          color: #ff6c00; }
+      .card .con .msg .favor {
+        font-size: 1.1rem;
+        color: #fff; }
+        .card .con .msg .favor i {
+          font-size: 1.6rem;
+          color: #ff6c00; }
+      .card .con .msg .detail a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1.3rem;
+        display: block;
+        line-height: 27px;
+        border: 1px solid #ff6c00;
+        width: 70px;
+        text-align: center;
+        border-radius: 6px;
+        height: 27px;
+        margin-top: 15px;
+        background: #ff6c00; }
+  .card .film .msg .title {
+    margin-bottom: 15px; }
+  .card .film .msg .favor {
+    margin-bottom: 25px; }
+    .card .film .msg .favor .icon {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      background: url(./icon.png);
+      background-size: cover; }
+  .card .film .msg .detail {
+    margin-top: 35px; }
+
+/*# sourceMappingURL=style.css.map */

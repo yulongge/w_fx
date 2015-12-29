@@ -1,0 +1,98 @@
+html,body{
+  font-size: 10px;
+}
+.card{
+  width: 100%;
+  padding-left:15px;
+  padding-right:15px;
+  box-sizing: border-box;
+  margin-top:20px;
+  .con{
+    width:100%;
+    background: #333333;
+    padding: 10px;
+    box-sizing: border-box;
+    display: table;
+    .img{
+      display: table-cell;
+      vertical-align: middle;
+      position: relative;
+      width: 50%;
+      img{
+        width:150px;
+        height: 210px;
+      }
+    };
+    .msg{
+      display: table-cell;
+      vertical-align: middle;
+      padding:0px 10px 0px 10px;
+      min-width: 50%;
+      span{
+        display: block;
+        color: #fff;
+        margin-bottom:5px;
+        font-size: 1.2rem;
+        line-height: 1.2;
+      };
+      .title{
+        font-size: 1.8rem;
+        line-height: 1.3;
+        margin-bottom: 25px;
+      };
+      .price{
+        font-size: 1.1rem;
+        color: #fff;
+        i{
+          font-size: 1.6rem;
+          color: #ff6c00;
+        }
+      };
+      .favor{
+        font-size: 1.1rem;
+        color: #fff;
+        i{
+          font-size: 1.6rem;
+          color: #ff6c00;
+        }
+      };
+      .detail{
+        a{
+          text-decoration: none;
+          color:#fff;
+          font-size: 1.3rem;
+          display: block;
+          line-height: 27px;
+          border: 1px solid #ff6c00;
+          width: 70px;
+          text-align: center;
+          border-radius: 6px;
+          height: 27px;
+          margin-top: 15px;
+          background: #ff6c00;
+        }
+      }
+    }
+  };
+  .film{
+    .msg{
+      .title{
+        margin-bottom: 15px;
+      };
+      .favor{
+        margin-bottom: 25px;
+        .icon{
+          display: inline-block;
+          width:15px;
+          height: 15px;
+          background: url(./icon.png);
+          background-size: cover;
+        }
+
+      };
+      .detail{
+        margin-top: 35px;
+      }
+    }
+  }
+}
