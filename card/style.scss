@@ -474,17 +474,18 @@ body {
       display: table-cell;
       vertical-align: middle;
       position: relative;
-      width: 50%;
+      //width: 50%;
+      width:150px;
       img{
         width:150px;
-        height: 210px;
+        //height: 210px;
       }
     };
     .msg{
       display: table-cell;
       vertical-align: middle;
       padding:0px 10px 0px 10px;
-      min-width: 50%;
+      //min-width: 50%;
       span{
         display: block;
         color:#dcdcdc;

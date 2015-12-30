@@ -528,15 +528,13 @@ body {
       display: table-cell;
       vertical-align: middle;
       position: relative;
-      width: 50%; }
+      width: 150px; }
       .card .con .img img {
-        width: 150px;
-        height: 210px; }
+        width: 150px; }
     .card .con .msg {
       display: table-cell;
       vertical-align: middle;
-      padding: 0px 10px 0px 10px;
-      min-width: 50%; }
+      padding: 0px 10px 0px 10px; }
       .card .con .msg span {
         display: block;
         color: #dcdcdc;
