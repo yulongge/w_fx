@@ -44,6 +44,7 @@ body{
 	.swiper-container {
         width: 100%;
 		min-height: 50px;
+		height: 135px;
 		.swiper-pagination-bullet{
 			opacity: 0.3;
 			background: #fff;
@@ -130,13 +131,15 @@ body{
 		};
 	}
 	.hotsList{
-		text-align: center;
+			text-align: center;
+			height: 68px;
+			//display: none;
 	    border-bottom: 1px solid #f5f5fb;
 	    padding-left: 5px;
 	    padding-right: 5px;
 	    font-size: 0;
-		padding-top:10px;
-		padding-bottom: 10px;
+			padding-top:10px;
+			padding-bottom: 10px;
 		.item{
 			position: relative;
 		    text-align: center;
@@ -144,11 +147,16 @@ body{
 		    width: 33.333%;
 		    font-size: 0;
 		    max-height:68px;
+				height:68px;
+				overflow: auto;
 			.itemCon{
 				width:90%;
 				position: relative;
 				margin:0 auto;
 				max-height: 68px;
+				height: 68px;
+				height: 100%;
+				overflow: auto;
 			};
 			img{
 				display: block;

@@ -78,6 +78,7 @@ var FX = {
           $(".loadMore").addClass("loadEnd").unbind("click").html("");
           myScroll.refresh();
         }
+
     }
 
     myScroll.refresh();
@@ -136,6 +137,7 @@ var FX = {
             str += "  <\/div>";
         $(".hotsList").append(str);
         myScroll.refresh();
+
     }
   },
   getHeadList:function(){//得到headlist
@@ -180,6 +182,7 @@ var FX = {
             _this.renderHead(type1);
             _this.renderHead(type2);
             _this.renderHead(type3);
+
             myScroll.refresh();
         },
         error: function() {
@@ -308,10 +311,10 @@ var FX = {
   init:function(){
     //this.swiper();
     //this.Scroll = new IScroll('#fxCon', {preventDefault: false,probeType: 3,mouseWheel: true })
-    this.getCMList();
-    this.getHeadList();
     this.getBannerList();
+    this.getHeadList();
     this.entranceGo();
+    this.getCMList();
      setTimeout(function(){
        myScroll.refresh();
      },1000);
