@@ -1,10 +1,11 @@
 'use strick';
 var FX = {
-  num:5,
-  startNum:0,
+  limit:5,
+  start:0,
   data:null,
   length:0,
   Scroll:"",
+  isRenderList:true,
   swiper:function(){//轮播图
       var swiper = new Swiper('.swiper-container', {
            autoplay: 2000,
@@ -14,19 +15,16 @@ var FX = {
            paginationClickable: true
       });
   },
-  getPage:function(data,start,num){
-    var list = data;
+  getPage:function(data){
+    console.log("getpage......");
+    console.log(data);
+    var list = data.info;
     var _this = this;
-    if(this.startNum>list.length){
+    if(list.length<=0){
       $(".loadMore").addClass("loadEnd").unbind("click").html("");
+      myScroll.refresh();
     }else{
-
-       var listLength = (_this.startNum+num);
-
-       if(listLength>=list.length){
-          listLength = list.length;
-       }
-       for(var i=_this.startNum;i<listLength;i++){
+       for(var i=0;i<list.length;i++){
           var isNew = false;
           var date = new Date(list[i].onlineTime*1000);
           var today = new Date().getTime();
@@ -40,7 +38,6 @@ var FX = {
               str += "<div class=\"item\">";
             }
 
-              //str += "  <a href=\""+list[i].url+"?activeId=\""+list[i].activeId+"\"\">";
               str += "  <a href=\""+list[i].url+"\">";
               str += "    <div class=\"img\">";
               str += "      <img src=\""+list[i].cover+"\" />";
@@ -57,10 +54,6 @@ var FX = {
               str += "      <\/div> ";
               str += "      <div class=\"bm\">";
               str += "        <span class=\"tit\">"+list[i].tag+"<\/span>";
-              //str += "        <span class=\"date\">"+(date.getMonth()+1)+"-"+date.getDate()+"<\/span>";
-              // if(isNew){
-              //   str += "        <span class=\"tip\">new<\/span>";
-              // }
               str += "        <span class=\"favor\">";
               str += "            <i class=\"rIcon\"></i>";
               str += "            <i class=\"rNum\">"+list[i].readNum+"</i>";
@@ -77,43 +70,51 @@ var FX = {
               str += "   <\/a>";
               str += "<\/div>";
           $(".cmsList .listCon").append(str);
+          myScroll.refresh();
         }
-        this.startNum = this.startNum+num;
-        if(this.startNum>list.length){
+        myScroll.refresh();
+        this.start = this.start+list.length;
+        if($(".cmsList .listCon .item").length>=data.totalNum){
           $(".loadMore").addClass("loadEnd").unbind("click").html("");
+          myScroll.refresh();
         }
     }
 
-
+    myScroll.refresh();
 
   },
   getCMList:function(){//内容列表
-        var url = "http://promotion.wepiao.com/activecms/active-list/get-active-list?channelId=3&activeId=1&city=10&jsonp=?";
         var _this = this;
-        $.getJSON(url,function(data){
-             if(data.ret==0&&data.sub==0){
-                var list = data.data;
-                _this.data = list;
-                _this.getPage(_this.data,_this.startNum,_this.num);
-                myScroll.refresh();
-
-             }
-        });
+        _this.requireCmsData(_this.start,_this.limit);
         $(".loadMore").click(function(){
-          _this.getPage(_this.data,_this.startNum,_this.num+5);
-          myScroll.refresh();
+          _this.requireCmsData(_this.start,_this.limit+5);
+          //myScroll.refresh();
           myScroll.on('scrollEnd', function(){
             console.log(this.y);
             console.log(this.maxScrollY);
             if(this.y>=(this.maxScrollY)){
-              //alert("coming...");
-              _this.getPage(_this.data,_this.startNum,_this.num+5);
-              myScroll.refresh();
+              if(_this.isRenderList){
+                _this.requireCmsData(_this.start,_this.limit);
+              }
             }
 
           });
         });
 
+  },
+  requireCmsData:function(start,limit){
+    this.isRenderList=false;
+    var url = "http://promotion.wepiao.com/activecms/active-list/get-active-list?channelId=3&&city=10&&start="+start+"&limit="+limit+"&jsonp=?";
+    var _this = this;
+    $.getJSON(url,function(data){
+         if($(".cmsList .listCon .item").length>=data.info)return;
+         if(data.ret==0&&data.sub==0){
+            var list = data.data;
+            _this.data = list;
+            _this.getPage(_this.data);
+            _this.isRenderList=true;
+         }
+    });
   },
   renderHead:function(data){
     for(var i=0;i<1;i++){
@@ -134,6 +135,7 @@ var FX = {
             str += "    <\/div>";
             str += "  <\/div>";
         $(".hotsList").append(str);
+        myScroll.refresh();
     }
   },
   getHeadList:function(){//得到headlist
@@ -175,20 +177,13 @@ var FX = {
                 }
               }
             }
-            //console.log("type============");
-            //console.log(type1);
-            //console.log(type2);
-            //console.log(type3);
             _this.renderHead(type1);
             _this.renderHead(type2);
             _this.renderHead(type3);
+            myScroll.refresh();
         },
         error: function() {
             console.log('not good');
-            // dfd.reject({
-            //     error: 0,
-            //     msg: 'json not found'
-            // });
         }
     });
   },
@@ -228,6 +223,7 @@ var FX = {
                     str += "<\/a>";
                     str += "<\/div>";
                 $(".swiper-wrapper").append(str);
+                myScroll.refresh();
               }
             }
             if($(".swiper-wrapper").find(".swiper-slide").length>1){
@@ -235,6 +231,7 @@ var FX = {
             }
 
             $(".swiper-pagination").show();
+            myScroll.refresh();
         },
         error: function() {
             console.log('not good');
@@ -315,6 +312,9 @@ var FX = {
     this.getHeadList();
     this.getBannerList();
     this.entranceGo();
+     setTimeout(function(){
+       myScroll.refresh();
+     },1000);
   }
 };
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -322,7 +322,7 @@ var FX = {
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 //ga('create', 'UA-58583546-1', { 'userId': 'USER_ID' });
-ga('create', 'UA-58583546-1', 'auto');
+ga('create', 'UA-66290672-1', 'auto');
 ga('send', 'pageview');
 $(function(){
   FX.init();
