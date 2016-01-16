@@ -8,7 +8,7 @@ var FX = {
   isRenderList:true,
   swiper:function(){//轮播图
       var swiper = new Swiper('.swiper-container', {
-           autoplay: 2000,
+           autoplay: 3000,
            loop:true,
            pagination: '.swiper-pagination',
            autoplayDisableOnInteraction:false,
@@ -86,10 +86,11 @@ var FX = {
   },
   getCMList:function(){//内容列表
         var _this = this;
-        _this.requireCmsData(_this.start,_this.limit);
+        _this.requireCmsData(_this.start,_this.limit+5);
         $(".loadMore").click(function(){
           _this.requireCmsData(_this.start,_this.limit+5);
           //myScroll.refresh();
+          $(this).hide();
           myScroll.on('scrollEnd', function(){
             console.log(this.y);
             console.log(this.maxScrollY);
@@ -118,6 +119,7 @@ var FX = {
     });
   },
   renderHead:function(data){
+    if(data.length<=0)return;
     for(var i=0;i<1;i++){
         var str  = "  <div class=\"item\">";
             str += "    <div class=\"itemCon\">";
@@ -125,8 +127,8 @@ var FX = {
             str += "        <div class=\"msg\">";
             str += "          <a href=\""+data[i].sLink+"\" class=\"linkTo"+(i+1)+"\">";
             str += "            <span>";
-            str += "              <i class=\"name\">"+data[i].sSecondTitle+"<\/i>";
-            str += "              <i class=\"price\">优惠购票"+data[i].sTitle+"<\/i>";
+            str += "              <i class=\"name\">"+data[i].sTitle+"<\/i>";
+            str += "              <i class=\"price\">"+data[i].sSecondTitle+"<\/i>";
             str += "            <\/span>";
             str += "          <\/a>";
             str += "        <\/div>";
@@ -144,6 +146,7 @@ var FX = {
     var _this = this;
      $.ajax({
         url : 'http://appnfs.wepiao.com/uploads/weixin_discovery_head/head.json?='+new Date().getTime(),  //线上
+        //url:"http://wxadmin.pre.wepiao.com/uploads/weixin_discovery_head/head.json",
         type: 'GET',
         dataType: 'jsonp',
         jsonpCallback: 'callbackhead',
@@ -160,22 +163,44 @@ var FX = {
               if(temp.iType==1){
                 if(today>iShowAt&&today<iHideAt){
                   type1.push(temp);
-                }else{
-                  type1.push(temp);
                 }
               }
               if(temp.iType==2){
                 if(today>iShowAt&&today<iHideAt){
-                  type2.push(temp);
-                }else{
                   type2.push(temp);
                 }
               }
               if(temp.iType==3){
                 if(today>iShowAt&&today<iHideAt){
                   type3.push(temp);
-                }else{
-                  type3.push(temp);
+                }
+              }
+            }
+            if(type1.length<=0||type2.length<=0||type3.length<=0){
+              for(var i=0;i<data.length;i++){
+                var temp = data[i];
+                var iHideAt = temp.iHideAt*1000;
+                var iShowAt = temp.iShowAt*1000;
+                if(type1.length<=0){
+                  if(temp.iType==1){
+                      if(iShowAt<=today){
+                        type1.push(temp);
+                      }
+                  }
+                }
+                if(type2.length<=0){
+                  if(temp.iType==2){
+                    if(iShowAt<=today){
+                      type2.push(temp);
+                    }
+                  }
+                }
+                if(type3.length<=0){
+                  if(temp.iType==3){
+                    if(iShowAt<=today){
+                      type3.push(temp);
+                    }
+                  }
                 }
               }
             }
@@ -235,6 +260,13 @@ var FX = {
 
             $(".swiper-pagination").show();
             myScroll.refresh();
+            var isrc = $(".swiper-wrapper").find("img").attr("src");
+            var Img = new Image();
+            Img.src = isrc;
+            Img.onload = function ()
+            {
+                  myScroll.refresh();
+            }
         },
         error: function() {
             console.log('not good');
@@ -308,9 +340,41 @@ var FX = {
           window.location.href = $(e.currentTarget).attr('href');
       });
   },
+  getParam:function(name){
+  	 var val = undefined;
+  	 var search = window.location.search;
+         search = search.substring(1,search.length);
+     var objs = search.split("&");
+   	 for(var i=0;i<objs.length;i++){
+   	 	var param = objs[i];
+   	 	var items = param.split("=");
+   	 	for(var j=0;j<items.length;j++){
+   	 		if(items[0]==name){
+   	 			val = items[1];
+   	 		}
+   	 	}
+   	 }
+ 	 console.log(val);
+ 	 return val;
+  },
+  initMenu:function(){
+    var _fromShow = this.getParam("referrer") ? this.getParam("referrer") : '';
+    if( _fromShow == 'show' ){
+        $('.nav-index').attr('href', 'http://wechat.show.wepiao.com/' );
+        $('.nav-cinema').parent().remove();
+        $('.nav-category').parent().removeClass('m-hide');
+        $('.nav-my').attr('href', '/movie_oz_my.html?referrer=show' );
+    } else if ( _fromShow == 'tiyu' ){
+        $('.nav-index').attr('href', 'http://wechat.show.wepiao.com/tiyu' );
+        $('.nav-cinema').parent().remove();
+        $('.nav-my').attr('href', '/movie_oz_my.html?referrer=tiyu' );
+    }
+    $('footer').removeClass('m-hide');
+  },
   init:function(){
     //this.swiper();
     //this.Scroll = new IScroll('#fxCon', {preventDefault: false,probeType: 3,mouseWheel: true })
+    this.initMenu();
     this.getBannerList();
     this.getHeadList();
     this.entranceGo();
