@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="csrf-token">
+    <title>微信唤起客户端</title>
+    <style media="screen">
+      a{
+        display: block;
+        margin:10px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <a href="wxmovie://">打开APP</a>
+    <a href="wxmovie://home">打开主界面首页</a>
+    <a href="wxmovie://cinemalist">打开主界面首页影院列表页</a>
+    <a href="wxmovie://show/list?id=hot">打开主界面演出页</a>
+    <a href="wxmovie://discovery">打开主界面发现页</a>
+    <a href="wxmovie://movie/cinemalist?movieid=5978">打开指定影片的影院列表页(美人鱼)</a>
+    <a href="wxmovie://cinemafilm?cinemaid=1000088&movieid=5978&cityid=10">打开到影院详情页并指定影片(北京朝阳大悦城金逸影院美人鱼)</a>
+    <a href="wxmovie://filmdetail?movieid=5978">打开到影片详情页</a>
+    <a href="wxmovie://movielist?type=1">打开影片列表页</a>
+    <a href="wwxmovie://showdetail?onlineid=434fb58cb67849898d819530d01a49d1">打开演出详情(穆桂英挂帅)</a>
+    <a href="wxmovie://hongbaolist">红包列表（电影票）——wxmovie</a>
+    <a href="wxmovie://hongbaolistshow">红包列表（演出票）</a>
+    <a href="wxmovie://presell?url=原选座券链接">选座券详情页面</a>
+    <a href="wxmovie://preselllist">选座券列表</a>
+    <a href="wxmovie://app?package=xxxx,其中xxxx是要调起的应用的完整包名">调起其他应用</a>
+    <a href="wxmovie://browser?url=http%3a%2f%2fwww.baidu.com%2f%3fid%3d333">从外部打开url</a>
+
+    <a href="wxmovie://hongbao?url=原红包链接&channelid=9&p=%p%">领取红包</a>
+    <a href="wxmovie://share?title=xxxx&content=yyyy&icon=编码后的icon链接&url=编码后的链接">调起本地分享页</a>
+    <a href="wxmovie://shareplatform?title=xxxx&content=yyyy&icon=编码后的icon链接&platform=编码后的平台分享信息json数组串">平台分享</a>
+    <a href="wxmovie://htmllike?activeId=xxxxxx,">用户点赞</a>
+
+    <a href="wxmovie://presellorder?name=xxx&pid=xxx&phone=xxxx&restrict_buy_top=xxx&restrict_buy_down=xxx&increment=xxxx&got_num=xxx&type=xxx&sale_price=xxx&chid=xxx&channelid=xxxx；">选座券详情页面购买按钮</a>
+
+
+
+
+
+  </body>
+  <script src="./zepto.min.js"></script>
+  <script src="./wx.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      $.ajax({
+          type : "get",
+          async:true,
+          data:{
+              url: window.location.href,
+              force:1
+          },
+          url : "http://wxtoken.wepiao.com/CreateJsApiTicket.php",
+          dataType : "jsonp",
+          success : function(res) {
+              if(res.ret == 0){
+                  var data = res.data;
+                  wx.config({
+                      beta:true,
+                      debug: false,//如果在测试环境可以设置为true，会在控制台输出分享信息； //开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                      appId:data.appId, // 必填，公众号的唯一标识
+                      timestamp:data.timestamp , // 必填，生成签名的时间戳
+                      nonceStr:data.nonceStr, // 必填，生成签名的随机串
+                      signature:data.signature,// 必填
+                      jsApiList: ['launch3rdApp','getInstallState'] // 必填
+                  });
+
+
+                  wx.error(function(res){
+                      //签名过期导致验证失败
+                      if(res.errMsg != 'config:ok'){//如果签名失效，不读缓存，强制获取新的签名
+                          console.log("签名失效");
+                          wx_verif(1,false);
+                      }
+                  });
+              }
+          },
+          error : function() {
+
+          }
+      });
+      $("a").click(function(e){
+        if(e.preventDefault){
+            e.preventDefault();
+        }
+        if(e.stopPropagation){
+            e.stopPropagation();
+        }
+        var url = $(this).attr("href");
+        wx.invoke('launch3rdApp', {
+            "appID": "wx188095e66e460dc5",
+            "messageExt": url,
+            "extInfo":url
+        }, function(res) {
+            //这里是回调函数
+            alert(res.err_msg);
+        });
+      });
+    });
+    wx.ready(function () {
+        wx.invoke('getInstallState', {
+            "packageName": "com.tencent.movieticket",
+            "packageUrl": "com.tencent.movieticket://",
+        }, function(res) {
+            alert(res.err_msg);
+        });
+    });
+  </script>
+</html>
