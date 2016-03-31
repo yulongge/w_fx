@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>蝙蝠侠大战超人</title>
+    <meta name="viewport" content="width=640,user-scalable=no" />
+    <!-- 删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <!-- 忽略页面中的数字识别为电话 -->
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-itunes-app" content="app-id=481589275" />
+    <script>
+    try {
+        console.log('log');
+    } catch (e) {
+        var console = {log: function () {
+        }};
+    }
+    /**
+     *  @namespace
+     **/
+    var gb = gb = gb || {};
+
+    //  Global static
+    //  weiixn start
+    var wxapp = {};
+
+    //声明资源文件列表
+    wxapp.fileList = [];
+    wxapp.fileList.push('images/panel1/page1_bg.jpg');
+    wxapp.fileList.push('images/panel1/page2_bg.jpg');
+    wxapp.fileList.push('images/panel1/page4_bg.jpg');
+    wxapp.fileList.push('images/panel1/page7_bg.jpg');
+    wxapp.fileList.push('images/panel1/page10_bg.jpg');
+    wxapp.fileList.push('images/panel1/page1_txt1.png');
+    wxapp.fileList.push('images/panel1/page1_txt2.png');
+    wxapp.fileList.push('images/panel1/page1_txt3.png');
+    wxapp.fileList.push('images/panel1/page1_txt4.png');
+    wxapp.fileList.push('images/panel1/page1_txt5.png');
+    wxapp.fileList.push('images/panel1/page2_batman.png');
+    wxapp.fileList.push('images/panel1/page2_jiantou.png');
+    wxapp.fileList.push('images/panel1/page2_msg.png');
+    wxapp.fileList.push('images/panel1/page2_superman.png');
+    
+    
+
+    wxapp.delayFileList = [];
+
+    // wxapp.delayFileList.push('images/loading.jpg');
+    
+
+    //  weiixn end
+    var app;
+    var config;
+    config = {
+        panels: {
+
+            loading: {
+                id:''
+            },
+            index:{
+                html:'files/indexpage.html'  
+            }
+        }
+    };
+    var sharewx = {
+            title: '领取《蝙蝠侠大战超人》观影秘笈，开启DC新宇宙',
+            desc: '领取观影秘笈，开启DC新宇宙',
+            friend:'《蝙蝠侠大战超人》观影秘笈',
+            link: window.location.href,
+            imgUrl: 'http://project.starfruit.net.cn/batmansuperman/images/share.jpg',
+            trigger: function (res) {
+                // alert('点击分享');
+            },
+            complete: function (res) {
+                // alert(JSON.stringify(res));
+            },
+            success: function (res) {
+              // alert('已分享');
+            },
+            cancel: function (res) {
+                // alert('已取消');
+            },
+            fail: function (res) {
+                // alert(JSON.stringify(res));
+            }
+        };
+    </script>
+    
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="http://pre.promotion.wepiao.com/download/launchApp/launchApp.min.js"></script>
+    <script src="js/libs.js"></script>
+
+    <!--<link href="devcss/style.css" rel="stylesheet" />
+    <script src="http://promotion.wepiao.com/download/launchApp/launchApp.min.js"></script>
+    <script src="devjs/app.js"></script>-->
+    
+</head>
+<body>
+    
+    <div class="body">
+        <div id="minisite">
+            
+            <div id="Panel_loading" class="loaders" style="background-color:#000;z-index:999;">
+                
+                <!-- <div class="loader">
+                    <div class="loader-inner line-scale">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div> -->
+                <img src="images/loading.jpg" class="loading"/>
+                <span class="loging-txt"></span>
+
+            </div>
+
+        </div>    
+    
+
+        <!-- <div class="music"><img src="images/music-on.png" /></div> -->
+
+        <div class="goupiao">
+            <span class="currentPage-txt"></span>
+            <!-- <div class="footnote">
+                
+            </div> -->
+            <span class="launchWePiao" data-wepiaourl="wxmovie://movie/cinemalist?movieid=6181"><img src="images/btn.png" class="btn" /></span>
+        </div>
+        
+
+    </div>
+
+    <div class="orientation_set">
+        <div>
+            <img src="images/orientation.png" width="50" alt="" class="translate" />
+            <br ／>请将屏幕竖向浏览
+        </div>
+    </div>
+
+    <!-- <audio id="bg" src="media/bg.mp3" loop="loop" width="0" height="0"></audio> -->
+    
+    
+    <script src="js/weixinapi.js"></script>
+    <script>
+    // console.log(window.location);
+    // console.log(2222,window.location.pathname.split('/')[1]);
+    
+        WeixinApi.init({
+            debug:false,
+            url: null
+        });
+        WeixinApi.share(sharewx);
+        
+
+    </script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-58583546-8', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+</body>
+</html>
+
+
+
